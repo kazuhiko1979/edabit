@@ -41,7 +41,6 @@ def TowerOfHanoi(n, from_rod, to_rod, aux_rod):
 n = 3
 
 TowerOfHanoi(n, 'A', 'C', 'B')
-print("*"*20)
 print("Move count", TowerOfHanoi.count)
 
 # def tower_hanoi(discs):

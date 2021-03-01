@@ -15,10 +15,9 @@ chatroom_status(["s234f", "mailbox2"]) ➞ "s234f and mailbox2 online"
 chatroom_status(["pap_ier44", "townieBOY", "panda321", "motor_bike5", "sandwichmaker833", "violinist91"])
 ➞ "pap_ier44, townieBOY and 4 more online"
 """
-from typing import List
 
 
-def chatroom_status(users: List) -> str:
+def chatroom_status(users):
 
     if users == []:
         return "no one online"

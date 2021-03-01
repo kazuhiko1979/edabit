@@ -20,9 +20,9 @@ def duplicate_nums(num):
             result.append(i)
 
     # # 空配列を弾く
-    if len(result) == 0:
-        return
-    return result.sort()
+    # if len(result) == 0:
+    #     # return
+    # return result.sort()
 
 
 # print(duplicate_nums([1, 2, 3, 4, 3, 5, 6]))

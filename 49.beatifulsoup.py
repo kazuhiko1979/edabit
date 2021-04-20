@@ -7,20 +7,33 @@ from bs4 import BeautifulSoup
 
 def main():
 
-    url = "https://www.yahoo.co.jp/"
-    res = requests.get(url)
-    soup = BeautifulSoup(res.content, 'html.parser')
+    # url = "https://www.yahoo.co.jp/"
+    # res = requests.get(url)
+    # soup = BeautifulSoup(res.content, 'html.parser')
+    #
+    # # img = soup.find_all("img")
+    # # pprint.pprint(img[0], width=40)
+    # # print(img[0].get("src"))
+    #
+    # # for i in soup.find_all("td", href=re.compile("http.*yahoo")):
+    # #     print(i)
+    # #     print("-------------------")
+    #
+    # print(soup.select("#p"))
+    # print(soup.prettify())
 
-    # img = soup.find_all("img")
-    # pprint.pprint(img[0], width=40)
-    # print(img[0].get("src"))
+    url = "http://kondou.com/BS4"
+    req = requests.get(url)
 
-    # for i in soup.find_all("td", href=re.compile("http.*yahoo")):
-    #     print(i)
-    #     print("-------------------")
+    soup = BeautifulSoup(req.text, 'lxml')
+    # print(soup.prettify())
 
-    print(soup.select("#p"))
-    print(soup.prettify())
+    ret = soup.find('p')
+    print(ret.prettify())
+
+    with open('ret.txt', mode='w', encoding='UTF-8') as f:
+        f.write(soup.prettify())
+
 
     return
 

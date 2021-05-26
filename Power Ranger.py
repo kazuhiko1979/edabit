@@ -26,7 +26,7 @@ def power_ranger(power, minimum, maximum):
         if math.modf(pow(i, power ** (-1)))[0] == 0.0:
             temp.append(math.modf(pow(i, power ** (-1)))[1])
 
-    return temp
+    return len(temp)
 
 print(power_ranger(2, 49, 65))
 print(power_ranger(3, 1, 27))

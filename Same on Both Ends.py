@@ -13,3 +13,22 @@ The function should not be case sensitive, meaning a capital "P" should match wi
 Mind the punctuation!
 Bonus points indeed for using regex!
 """
+
+
+def count_same_ends(txt):
+
+    count = 0
+
+    for i in txt.split():
+        i = ''.join(filter(str.isalnum, i))
+        if len(i) > 1 and i[0].lower() == i[-1]:
+            count += 1
+    return count
+
+print(count_same_ends("Pop! goes the balloon"))
+print(count_same_ends("And the crowd goes wild!"))
+print(count_same_ends("No I am not in a gang."))
+
+
+
+

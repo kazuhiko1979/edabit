@@ -17,11 +17,6 @@ import math
 
 def splitAndAdd(digits):
 
-    # new_list = list(str(digits))
-    # return sum([int(i) for i in new_list])
-
-    # recursive
-
     # ベースケース（1桁になるまで継続）
     if digits < 10:
         return digits

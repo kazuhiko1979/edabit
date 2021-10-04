@@ -42,18 +42,6 @@ def get_n_followers():
     follow_count が取得できない状態　twitter API or 内部コード調査
     """
 
-    # # api = tweepy.API(auth)
-    # # # screen_name = "challengevolley"
-    # # id = 87142944
-    # # # me = api.me()
-    # # # n_followers = me.followers_count
-    # #
-    # user = api.get_user()
-    # # user = api.get_user(id, screen_name)
-    # # n_followers = user.followers_count
-    # n_followers = user.followers_count
-    # return n_followers
-
 
 
 def main():

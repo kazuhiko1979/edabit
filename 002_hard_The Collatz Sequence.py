@@ -22,30 +22,45 @@ max_collatz(85) ➞ 256
 
 def max_collatz(num):
 
-    seq = []
-    while num != 1:
-        seq.append(num)
-        num = num // 2 if num % 2 == 0 else num * 3 + 1
-    return max(seq) if seq else 1
-
-
-    # res = []
-    # res.append(num)
-    #
+    # no use max
+    # res = num
     # while num > 1:
-    #     if num % 2 == 0:
-    #         num = num / 2
-    #         res.append(num)
-    #     else:
-    #         num = num * 3 + 1
-    #         res.append(num)
-    #
-    # return max(res)
+    #     num = num * 3 + 1 if num % 2 else num // 2
+    #     if num > res:
+    #         res = num
+    # return res
 
-print(max_collatz(10))
-print(max_collatz(32))
-print(max_collatz(85))
-print(max_collatz(161))
+
+    # seq = []
+    # while num != 1:
+    #     seq.append(num)
+    #     num = num // 2 if num % 2 == 0 else num * 3 + 1
+    # return max(seq) if seq else 1
+
+def max_collatz_v1(num):
+
+    res = []
+    res.append(num)
+
+    while num > 1:
+        if num % 2 == 0:
+            num = num / 2
+            res.append(num)
+        else:
+            num = num * 3 + 1
+            res.append(num)
+
+    return max(res)
+
+
+if __name__ == '__main__':
+
+    print(max_collatz_v1(10))
+
+# print(max_collatz(10))
+# print(max_collatz(32))
+# print(max_collatz(85))
+# print(max_collatz(161))
 
 
 

@@ -15,12 +15,20 @@ Inputs will be whole numbers >= 0
 """
 
 def fib(n):
-    
-    a, b = 0, 1
-    for _ in range(n):
-        a, b = b, a + b
-    return a
+    # v1
+    if n < 0:
+        raise ValueError(n)
+    if n < 2:
+        return n
+    return fib(n-2) + fib(n-1)
 
+    # v2
+    # a, b = 0, 1
+    # for _ in range(n):
+    #     a, b = b, a + b
+    # return a
+
+    # v3
     # a = 0
     # b = 1
     # fib_list = []
@@ -32,5 +40,13 @@ def fib(n):
     #     a, b = b, a + b
     # return fib_list[-1]
 
+
+if __name__ == '__main__':
+
+
 print(fib(5))
+print(fib(6))
+print(fib(7))
+print(fib(8))
+
 

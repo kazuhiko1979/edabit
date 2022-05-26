@@ -18,10 +18,11 @@ pie_chart({ "a": 8, "b": 21, "c": 12, "d": 5, "e": 4 }) ➞ { "a": 57.6, "b": 15
 
 def pie_chart(data):
 
+    # v2
     total = sum(data.values())
     return {i: round(data[i] / total * 360, 1) for i in data}
 
-
+    # v1
     # degreeTotal = sum([degree for key, degree in data.items()])
     #
     # for key, degree in data.items():

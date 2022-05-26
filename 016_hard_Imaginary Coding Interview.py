@@ -32,25 +32,36 @@ interview([5, 5, 10, 10, 15, 15, 20, 20], 130) ➞ "disqualified"
 # Solved all the questions in their respected time limits but exceeded the total time limit of the interview.
 """
 
-limitedList = [5, 5, 10, 10, 15, 15, 20, 20]
-timeLimited = 120
+
+key = [5, 5, 10, 10, 15, 15, 20, 20]
 
 def interview(lst, tot):
 
+    # v3
     return ("qualified" if tot <= 120 and len(lst) == 8 and
-                           all(v <= limitedList[i] for i, v in enumerate(lst)) else "disqualified")
+                           all(v <= key[i] for i, v in enumerate(lst)) else "disqualified")
+
+    # v2
+    # key = [5, 5, 10, 10, 15, 15, 20, 20]
+    # if tot > 120 or len(lst) < 8:
+    #     return "disaqualified"
+    # while len(lst) > 0:
+    #     if lst.pop() > key.pop():
+    #         return "disaqualified"
+    # return "qualified"
 
 
-    # if len(lst) == len(limitedList) and tot <= timeLimited:
-    #     for i, x in zip(lst, limitedList):
-    #         if i <= x:
-    #             continue
-    #         if i > x:
-    #             return "disqualified"
-    #             break
-    #     return "qualified"
-    # else:
-    #     return "disqualified"
+    # v1
+    if len(lst) == len(key) and tot <= 120:
+        for i, x in zip(lst, key):
+            if i <= x:
+                continue
+            if i > x:
+                return "disqualified"
+                break
+        return "qualified"
+    else:
+        return "disqualified"
 
 print(interview([5, 5, 10, 10, 15, 15, 20, 20], 120))
 print(interview([2, 3, 8, 6, 5, 12, 10, 18], 64))

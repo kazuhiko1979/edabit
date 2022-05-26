@@ -14,9 +14,21 @@ The offset can be negative.
 The offset can be greater than the length of string.
 """
 def wrap_around(string, offset):
+    # v3
+    # return string[offset % len(string):] + string[:offset % len(string)]
 
-    return string[offset % len(string):] + string[:offset % len(string)]
+    # v2
+    if offset == 0:
+        return string
 
+    if offset > 0:
+        print(len(string))
+        # 割り算のあまり（モジュロ演算）
+        offset = offset % len(string)
+        print(offset)
+
+
+    # v1
     # lensOfString = len(string)
     # minusOfOffset = 0
     #
@@ -41,14 +53,14 @@ def wrap_around(string, offset):
     #     return string[:-len(deleteInString)]
 
 print(wrap_around("Hello, World!", 2))
-print(wrap_around("From what I gathered", -4))
-print(wrap_around("No Changes", 0))
-print(wrap_around("S", -60))
-print(wrap_around("Subordinating", 2))
-print(wrap_around("Assemblywomen", -6))
-print(wrap_around("Pedantic", 4))
-print(wrap_around("Nonscience", -116))
-print(wrap_around("Excelsior", 30))
-print(wrap_around("Incomprehensibilities", 50))
+# print(wrap_around("From what I gathered", -4))
+# print(wrap_around("No Changes", 0))
+# print(wrap_around("S", -60))
+# print(wrap_around("Subordinating", 2))
+# print(wrap_around("Assemblywomen", -6))
+# print(wrap_around("Pedantic", 4))
+# print(wrap_around("Nonscience", -116))
+# print(wrap_around("Excelsior", 30))
+# print(wrap_around("Incomprehensibilities", 50))
 
 

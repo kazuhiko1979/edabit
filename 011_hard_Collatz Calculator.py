@@ -18,16 +18,18 @@ collatz(6) ➞ [8, 16]
 
 collatz(21) ➞ [7, 64]
 """
-# import copy
-# res = []
+import copy
+
+res = []
 
 def collatz(n):
 
-    l = [n]
-    while n > 1:
-        n = 3 * n + 1 if n % 2 else n / 2
-        l.append(n)
-    return [len(l)-1, max(l)]
+    # l = [n]
+    # while n > 1:
+    #     n = 3 * n + 1 if n % 2 else n / 2
+    #     l.append(n)
+    # return [len(l)-1, max(l)]
+
 
     # count = 0
     # max = n
@@ -57,33 +59,35 @@ def collatz(n):
     # return [it, M]
 
 
-#     while n > 1:
-#         if n % 2 == 0:
-#             return divide(n)
-#         elif n % 2 == 1:
-#             return multiply(n)
-#
-#     if res == []:
-#         return [0, int(n)]
-#     else:
-#         result = copy.deepcopy(res)
-#         res.clear()
-#     return [len(result), max(result)]
-#
-#
-# def divide(n):
-#     n = n / 2
-#     res.append(int(n))
-#     return collatz(n)
-#
-# def multiply(n):
-#     n = n * 3 + 1
-#     res.append(int(n))
-#     return collatz(n)
+    while n > 1:
+        if n % 2 == 0:
+            return divide(n)
+        elif n % 2 == 1:
+            return multiply(n)
+
+    if res == []:
+        return [0, int(n)]
+    else:
+        result = copy.deepcopy(res)
+        res.clear()
+    return [len(result), max(result)]
+
+
+def divide(n):
+    n = n / 2
+    res.append(int(n))
+    return collatz(n)
+
+def multiply(n):
+    n = n * 3 + 1
+    res.append(int(n))
+    return collatz(n)
 
 print(collatz(1))
 print(collatz(3))
 print(collatz(9))
+print(collatz(17))
+
 print(collatz(27))
 print(collatz(81))
 

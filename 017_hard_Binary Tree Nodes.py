@@ -11,6 +11,8 @@ N	P
 5	-1
 Write a function to find the node type of the node within this Binary Tree, ordered by the value of the node. Output one of the following:
 
+
+
 Root: If node is root node.
 Leaf: If node is leaf node.
 Inner: If node is neither root nor leaf node.

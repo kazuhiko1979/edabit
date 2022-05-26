@@ -14,14 +14,18 @@ import datetime
 
 def week_after(d):
 
-    date = datetime.datetime.strptime(d, "%d/%m/%Y") + datetime.timedelta(days=7)
-    return date.strftime("%d/%m/%Y")
+    # v2
+    # date = datetime.datetime.strptime(d, "%d/%m/%Y") + datetime.timedelta(days=7)
+    # return date.strftime("%d/%m/%Y")
 
-    # d = datetime.datetime.strptime(d, "%d/%m/%Y")
-    # week = datetime.timedelta(days=7)
-    #
-    # d = d + week
-    # return d.strftime("%d/%m/%Y")
+    # v1
+    d = datetime.datetime.strptime(d, "%d/%m/%Y")
+    week = datetime.timedelta(days=7)
+
+    d = d + week
+    return d.strftime("%d/%m/%Y")
 
 print(week_after("12/03/2020"))
+print(week_after("28/12/2020"))
+
 

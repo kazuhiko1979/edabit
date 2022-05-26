@@ -34,8 +34,27 @@ s = "##     ##/##     ##/##     ##/##     ##/#########/##     ##/##     ##/##   
 
 def bridges(s):
 
-    s = s.split("/")
+    # v2
+    # print('横橋カウント')
+    # for i in s.split("/"):
+    #     print(i)
+    # print(s.count('#'*9))
+    #
+    # # print('------')
+    #
+    # print('縦橋カウント')
+    # for i in range(9):
+    #     print(s[i::10])
+    # print([s[i::10] for i in range(9)].count('#'*9))
+    #
+    # return s.count('#'*9) + [s[i::10] for i in range(9)].count('#'*9)
 
+
+    # v1
+    s = s.split("/")
+    for i in s:
+        print(i)
+    #
     # 水平”＃”橋になっている数をカウント
     horizon = sum([1 for i in s if set(i) == {"#"}])
     # 縦”＃”橋になっている数をカウント
@@ -43,5 +62,8 @@ def bridges(s):
 
     return horizon + vertical
 
-print(bridges("   ###   /    #    /    #    /#   #   #/#########/#   #   #/    #    /    #    /   ###   "))
 
+
+print(bridges("   ###   /    #    /    #    /#   #   #/#########/#   #   #/    #    /    #    /   ###   "))
+print(bridges("#########/#       #/#   #   #/#   #   #/#### ####/#   #   #/#   #   #/#       #/#########"))
+print(bridges("##     ##/##     ##/##     ##/##     ##/#########/##     ##/##     ##/##     ##/##     ##"))

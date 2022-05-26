@@ -1,5 +1,6 @@
 """
-Heading off to the Tree Arboretum of Various Heights, I bring along my camera to snap up a few photos. Ideally, I'd want to take a picture of as many trees as possible, but the taller trees may cover up the shorter trees behind it.
+Heading off to the Tree Arboretum of Various Heights, I bring along my camera to snap up a few photos. Ideally,
+I'd want to take a picture of as many trees as possible, but the taller trees may cover up the shorter trees behind it.
 
 A tree is hidden if it is shorter or the same height as the tree in front.
 

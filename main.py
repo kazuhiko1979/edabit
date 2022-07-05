@@ -246,15 +246,81 @@ def conbinationsOfParenthesis(num):
 import math
 from math import factorial
 
-def getRoutes(row, col):
-    if row == 1 or col == 1:
-        return 1
-    return getRoutes(row-1, col) + getRoutes(row, col-1)
+# def getRoutes(row, col):
+#     if row == 1 or col == 1:
+#         return 1
+#     return getRoutes(row-1, col) + getRoutes(row, col-1)
+
+# def twoSum(nums, target):
+#     for i in range(len(nums)):
+#         for j in range(i + 1, len(nums)):
+#             if nums[j] == target - nums[i]:
+#                 return [i, j]
+
+def lengthOfLongestSubstring(s):
+
+    index = 0
+    # temp = s[index]
+    result = []
+    # print(type(temp))
+    # print(type(s[1]))
+
+    # while index < len(s):
+    #     try:
+    #         if s[index] != s[index+1]:
+    #             result.append(s[index])
+    #             result.append(s[index + 1])
+    #             index += 1
+    #         else:
+    #             index += 1
+    #     except IndexError:
+    #         pass
+    #
+    # return result
+
+    # print(s[0])
+    # temp = []
+    # index = 0
+    # while index < len(s):
+    #     if s[index] not in temp:
+    #         temp.append(s[index])
+    #         index += 1
+    #     else:
+    #         temp.pop(0)
+    #         index += 1
+    #
+    # return temp
+    def check(start, end):
+        chars = [0] * 128
+        for i in range(start, end + 1):
+            c = s[i]
+            chars[ord(c)] += 1
+            if chars[ord(c)] > 1:
+                return False
+        return True
+
+    n = len(s)
+
+    res = 0
+    for i in range(n):
+        for j in range(i, n):
+            if check(i, j):
+                res = max(res, j - i + 1)
+    return res
 
 if __name__ == '__main__':
-    print(getRoutes(3, 6))
-    print(getRoutes(6, 3))
-    print(getRoutes(2, 84))
+    print(lengthOfLongestSubstring("abcabcbb"))
+    print(lengthOfLongestSubstring('bbbbb'))
+    print(lengthOfLongestSubstring('pwwkew'))
+
+    # print(twoSum([2,7,11,15], 9))
+    # print(twoSum([3,2,4],6))
+    # print(twoSum([3, 3], 6))
+    # print(twoSum([3, 2, 3], 6))
+
+    # print(getRoutes(3, 6))
+    # print(getRoutes(6, 3))
+    # print(getRoutes(2, 84))
 
     # print(recursiveArtihmetic(2, 10, 3))
     # print(sumOf_even_and_add([10,13,14,15,20,27,30]))

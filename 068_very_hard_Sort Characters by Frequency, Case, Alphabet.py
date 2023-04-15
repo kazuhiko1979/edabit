@@ -12,12 +12,20 @@ frequency_sort("cccaaa") ➞ "aaaccc"
 
 frequency_sort("Aabb") ➞ "bbAa"
 """
-import operator as op
+
+# v2
 
 def frequency_sort(s):
 
-    temp = sorted([str(i) * int(op.countOf(s, i)) for i in list(set(sorted(s)))])
-    return ''.join(sorted(temp, key=lambda s: (-len(s))))
+    return ''.join(sorted(s, key=lambda x: (-s.count(x), -x.isupper(), x.lower())))
+
+# v1
+# import operator as op
+#
+# def frequency_sort(s):
+#
+#     temp = sorted([str(i) * int(op.countOf(s, i)) for i in list(set(sorted(s)))])
+#     return ''.join(sorted(temp, key=lambda s: (-len(s))))
 
 
 

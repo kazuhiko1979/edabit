@@ -43,7 +43,6 @@ def total_points(guesses, word):
 			point += 54
 		else:
 			valid_guess = True
-			# continue
 
 		# result = []
 		for char, freq in dic_guess.items():

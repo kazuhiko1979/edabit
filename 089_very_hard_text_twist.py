@@ -49,9 +49,7 @@ def total_points(guesses, word):
 			if char not in dic_word or dic_word[char] < freq:
 				valid_guess = False
 				break
-			# 	result.append(False)
-			# else:
-			# 	result.append(True)
+			# GitHubから編集
 
 		# if all(result):
 		if valid_guess:

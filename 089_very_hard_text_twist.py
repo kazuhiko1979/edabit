@@ -41,16 +41,21 @@ def total_points(guesses, word):
 
 		if len(dic_guess) == 6 and len(dic_word) == 6 and sorted(dic_guess) == sorted(dic_word):
 			point += 54
-			continue
+		else:
+			valid_guess = True
+			# continue
 
-		result = []
+		# result = []
 		for char, freq in dic_guess.items():
 			if char not in dic_word or dic_word[char] < freq:
-				result.append(False)
-			else:
-				result.append(True)
+				valid_guess = False
+				break
+			# 	result.append(False)
+			# else:
+			# 	result.append(True)
 
-		if all(result):
+		# if all(result):
+		if valid_guess:
 			point += len(guess) - 2
 	return point
 

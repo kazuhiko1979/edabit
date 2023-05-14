@@ -16,22 +16,15 @@ import copy
 def edabit_in_string(txt):
 
 	words = "edabit"
-	master = copy.deepcopy(words)
+	index = 0
 
-	result = ''
+	for char in txt:
+		if char == words[index]:
+			index += 1
+			if index == len(words):
+				return "YES"
 
-	while master:
-		for i in txt:
-			if master[0] == i:
-				master = master[1:]
-				txt = txt[1:]
-				result += i
-				if words == result:
-					return "YES"
-			else:
-				txt = txt[1:]
-
-		return "NO"
+	return "NO"
 
 print(edabit_in_string("eddaaabt")) # NO
 print(edabit_in_string("edwardisabletodoit")) # YES

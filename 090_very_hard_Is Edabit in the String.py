@@ -11,7 +11,6 @@ edabit_in_string(“edwardisabletodoit”) ➞ “YES”
 
 edabit_in_string(“abecdfghijklmnopqrstuvwxyz”) ➞ “NO”
 """
-import copy
 
 def edabit_in_string(txt):
 

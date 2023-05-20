@@ -13,3 +13,21 @@ increment_string("foobar0009") ➞ "foobar0010"
 increment_string("foo099") ➞ "foo100"
 """
 
+def increment_string(txt):
+
+	result = (''.join(c for c in txt if c.isalpha()) or None,
+			   ''.join(c for c in txt if c.isdigit()) or None)
+
+	if result[1]:
+		number = str(int(result[1].lstrip('0')) + 1)
+		return result[0] + number.zfill(len(result[1]))
+	return result[0] + "1"
+
+print(increment_string("foo"))
+print(increment_string("foobar01002"))
+print(increment_string("foobar0009"))
+print(increment_string("foobar00599"))
+print(increment_string("foo099"))
+print(increment_string("foo09999"))
+
+

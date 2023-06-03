@@ -21,4 +21,42 @@ pascals_triangle(6) ➞ "1 6 15 20 15 6 1"
 
 pascals_triangle(8) ➞ "1 8 28 56 70 56 28 8 1"
 """
+import copy
+
+def pascals_triangle(row):
+
+	count = 0
+
+	def set_list(top_cur_list, bottom_cur_list, count):
+
+		cur_list = []
+		top_cur_list.insert(0, 0)
+		bottom_cur_list.append(0)
+
+		for i, k in zip(top_cur_list, bottom_cur_list):
+			cur_list.append(i + k)
+
+		count += 1
+
+		if count < row:
+			temp_cur_list = copy.deepcopy(cur_list)
+			return set_list(cur_list, temp_cur_list, count)
+		else:
+			return ' '.join(map(str, cur_list[1:-1]))
+
+	while row >= count:
+		# Initial settings
+		top_pre_list = [0, 1, 0]
+		bottom_pre_list = [0, 1, 0]
+
+		return set_list(top_pre_list, bottom_pre_list, count)
+
+print(pascals_triangle(1))
+print(pascals_triangle(2))
+print(pascals_triangle(3))
+print(pascals_triangle(4))
+print(pascals_triangle(5))
+print(pascals_triangle(29))
+
+
 

@@ -21,6 +21,7 @@ pascals_triangle(6) ➞ "1 6 15 20 15 6 1"
 
 pascals_triangle(8) ➞ "1 8 28 56 70 56 28 8 1"
 """
+# 2023-06-03 
 def pascals_triangle(row):
 
 	if row == 1:

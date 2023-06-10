@@ -33,15 +33,15 @@ def group(lst, size):
 	result = [[] for _ in range(groups)]
 	index_result = 0
 
-	while lst:
+	for n in lst:
 		if index_result < groups:
-			n = lst[0]
-			if n:
-				result[index_result].append(n)
-				lst = lst[1:]
-				index_result += 1
+			result[index_result].append(n)
+			index_result += 1
 		else:
 			index_result = 0
+			result[index_result].append(n)
+			index_result += 1
+
 	return result
 
 print(group([1, 2, 3, 4], 2))

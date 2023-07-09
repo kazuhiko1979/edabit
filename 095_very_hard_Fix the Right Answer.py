@@ -16,9 +16,8 @@ Output always returns an integer.
 def post_fix(expr):
 
     operators = '+-*/'
-
-    numbers_list = [i for i in expr if i.isnumeric()]
-    operators_list = [x for x in expr if x in operators]
+    numbers_list = [i for i in expr.split() if i.isnumeric()]
+    operators_list = [x for x in expr.split() if x in operators]
 
     max_length = max(len(lst) for lst in [numbers_list, operators_list])
     result = []
@@ -29,6 +28,10 @@ def post_fix(expr):
                 result.append(lst[i])
     return eval(''.join(result))
 
-
+print(post_fix("2 2 +"))
+print(post_fix("2 2 /"))
+print(post_fix("5 6 * 2 1 + /"))
+print(post_fix("10 10 * 10 /"))
 print(post_fix("8 4 / 9 * 3 1 * /"))
+print(post_fix("1 1 + 2 2 + -"))
 

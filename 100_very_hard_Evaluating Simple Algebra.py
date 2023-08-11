@@ -12,24 +12,33 @@ Notes
 There are spaces between every number and symbol in the string.
 x may be a negative number.
 """
-
 def eval_algebra(eq):
-    eq = eq.split()
-    if eq[4] == 'x':
-        if eq[1] == '+':
-            return int(eq[0]) + int(eq[2])
-        else:
-            return int(eq[0]) - int(eq[2])
-    if eq[0] == 'x':
-        if eq[1] == '+':
-            return int(eq[4]) - int(eq[2])
-        else:
-            return int(eq[4]) + int(eq[2])
-    if eq[2] == 'x':
-        if eq[1] == '+':
-            return int(eq[4]) - int(eq[0])
-        else:
-            return int(eq[0]) - int(eq[4])
+
+	eq = '-'.join(eq.split('='))
+
+	if '- x' in eq:
+		return eval(eq.replace('x', '0'))
+	else:
+		return -eval(eq.replace('x', '0'))
+
+
+# def eval_algebra(eq):
+#     eq = eq.split()
+#     if eq[4] == 'x':
+#         if eq[1] == '+':
+#             return int(eq[0]) + int(eq[2])
+#         else:
+#             return int(eq[0]) - int(eq[2])
+#     if eq[0] == 'x':
+#         if eq[1] == '+':
+#             return int(eq[4]) - int(eq[2])
+#         else:
+#             return int(eq[4]) + int(eq[2])
+#     if eq[2] == 'x':
+#         if eq[1] == '+':
+#             return int(eq[4]) - int(eq[0])
+#         else:
+#             return int(eq[0]) - int(eq[4])
 
 # def eval_algebra(eq):
 #

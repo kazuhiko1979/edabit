@@ -14,35 +14,53 @@ x may be a negative number.
 """
 
 def eval_algebra(eq):
+    eq = eq.split()
+    if eq[4] == 'x':
+        if eq[1] == '+':
+            return int(eq[0]) + int(eq[2])
+        else:
+            return int(eq[0]) - int(eq[2])
+    if eq[0] == 'x':
+        if eq[1] == '+':
+            return int(eq[4]) - int(eq[2])
+        else:
+            return int(eq[4]) + int(eq[2])
+    if eq[2] == 'x':
+        if eq[1] == '+':
+            return int(eq[4]) - int(eq[0])
+        else:
+            return int(eq[0]) - int(eq[4])
 
-	eq = eq.split(' ')
-	# print(eq)
-
-	if eq[-1] == 'x':
-		return eval(''.join(eq[:-2]))
-
-	if eq[0] == 'x':
-		if int(eq[2]) >= int(eq[-1]):
-			if eq[1] == '+':
-				return eval(''.join(eq[-1] + '-' + eq[2]))
-			if eq[1] == '-':
-				return eval(''.join(eq[-1] + '+' + eq[2]))
-		elif int(eq[2]) <= int(eq[-1]):
-			if eq[1] == '-':
-				return eval(''.join(eq[-1] + '+' + eq[2]))
-			if eq[1] == '+':
-				return eval(''.join(eq[-1] + '-' + eq[2]))
-	if eq[2] == 'x':
-		if int(eq[0]) >= int(eq[-1]):
-			if eq[1] == '+':
-				return -(eval(''.join('-' + eq[-1] + '+' + eq[0])))
-			if eq[1] == '-':
-				return eval(''.join('-' + eq[-1] + '+' + eq[0]))
-		elif int(eq[0]) <= int(eq[-1]):
-			if eq[1] == '-':
-				return eval(''.join(eq[-1] + '+' + eq[0]))
-			if eq[1] == '+':
-				return eval(''.join(eq[-1] + '-' + eq[0]))
+# def eval_algebra(eq):
+#
+# 	eq = eq.split(' ')
+#
+# 	if eq[-1] == 'x':
+# 		return eval(''.join(eq[:-2]))
+#
+# 	if eq[0] == 'x':
+# 		if int(eq[2]) >= int(eq[-1]):
+# 			if eq[1] == '+':
+# 				return eval(''.join(eq[-1] + '-' + eq[2]))
+# 			if eq[1] == '-':
+# 				return eval(''.join(eq[-1] + '+' + eq[2]))
+# 		elif int(eq[2]) <= int(eq[-1]):
+# 			if eq[1] == '-':
+# 				return eval(''.join(eq[-1] + '+' + eq[2]))
+# 			if eq[1] == '+':
+# 				return eval(''.join(eq[-1] + '-' + eq[2]))
+#
+# 	if eq[2] == 'x':
+# 		if int(eq[0]) >= int(eq[-1]):
+# 			if eq[1] == '+':
+# 				return -(eval(''.join('-' + eq[-1] + '+' + eq[0])))
+# 			if eq[1] == '-':
+# 				return eval(''.join('-' + eq[-1] + '+' + eq[0]))
+# 		elif int(eq[0]) <= int(eq[-1]):
+# 			if eq[1] == '-':
+# 				return eval(''.join(eq[-1] + '+' + eq[0]))
+# 			if eq[1] == '+':
+# 				return eval(''.join(eq[-1] + '-' + eq[0]))
 
 print(eval_algebra("2 + x = 19"))
 print(eval_algebra("4 - x = 1"))

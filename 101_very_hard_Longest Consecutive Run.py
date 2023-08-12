@@ -19,53 +19,84 @@ Notes
 If there aren't any consecutive runs (there is a gap between each integer), return 1.
 """
 
-
-
 def longest_run(lst):
+    if len(lst) < 2:
+        return len(lst)
 
-	flag = ""
-	length = 1
-	max_length = len(lst)
-	result = []
+    max_length = 1
+    length = 1
+    for i in range(1, len(lst)):
+        diff = lst[i] - lst[i - 1]
+        if diff == 0:
+            length = 1
+        else:
+            if diff == lst[i - 1] - lst[i - 2]:
+                length += 1
+            else:
+                length = 2 if diff != lst[i - 1] - lst[i - 2] else 1
+        max_length = max(max_length, length)
 
-	for i in range(0, len(lst)):
-		if i == 0:
-			diff = lst[i + 1] - lst[i]
-			if diff == 1:
-				flag = '+'
-				length += 1
-				continue
-			if diff == -1:
-				flag = '-'
-				length += 1
-				continue
-			else:
-				if diff > 0:
-					flag = '+'
-					continue
-				else:
-					flag = '-'
-					continue
-		else:
-			if i != max_length - 1:
-				diff = lst[i + 1] - lst[i]
-				if diff == 1:
-					if flag == '+':
-						length += 1
-						continue
+    return max_length
 
-				if diff == -1:
-					if flag == '-':
-						length += 1
-						continue
-				else:
-					result.append(length)
-					length = 1
-					continue
+# テスト
+print(longest_run([1, 2, 3, 5, 6, 7, 8, 9]))    # 5
+print(longest_run([1, 2, 3, 10, 11, 15]))       # 3
+print(longest_run([-7, -6, -5, -4, -3, -2, -1]))  # 7
+print(longest_run([3, 5, 6, 10, 15]))           # 2
+print(longest_run([3, 5, 7, 10, 15]))           # 1
+print(longest_run([5, 4, 3, 2, 1]))              # 5
+print(longest_run([5, 4, 2, 1]))                 # 2
+print(longest_run([10, 9, 0, 5]))               # 2
+print(longest_run([1, 2, 3, 2, 1]))              # 3
+print(longest_run([10, 9, 8, 7, 6, 2, 1]))      # 5
 
-		result.append(length)
-		return max(result)
 
+
+# def longest_run(lst):
+#
+# 	flag = ""
+# 	length = 1
+# 	max_length = len(lst)
+# 	result = []
+#
+# 	for i in range(0, len(lst)):
+#
+# 		if i == 0:
+# 			diff = lst[i + 1] - lst[i]
+# 			if diff == 1:
+# 				flag = '+'
+# 				length += 1
+# 				continue
+# 			if diff == -1:
+# 				flag = '-'
+# 				length += 1
+# 				continue
+# 			else:
+# 				if diff > 0:
+# 					flag = '+'
+# 					continue
+# 				else:
+# 					flag = '-'
+# 					continue
+# 		else:
+# 			if i != max_length - 1:
+# 				diff = lst[i + 1] - lst[i]
+# 				if diff == 1:
+# 					if flag == '+':
+# 						length += 1
+# 						continue
+#
+# 				if diff == -1:
+# 					if flag == '-':
+# 						length += 1
+# 						continue
+# 				else:
+# 					result.append(length)
+# 					length = 1
+# 					continue
+#
+# 		result.append(length)
+# 		return max(result)
 
 # def longest_run(lst):
 

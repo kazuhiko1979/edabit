@@ -18,25 +18,38 @@ longest_run([3, 5, 7, 10, 15]) ➞ 1
 Notes
 If there aren't any consecutive runs (there is a gap between each integer), return 1.
 """
+from itertools import groupby
 
 def longest_run(lst):
-    if len(lst) < 2:
-        return len(lst)
+    differences = [a - b for a, b in zip(lst, lst[1:])]
+    grouped_differences = groupby(differences, lambda x: x)
 
-    max_length = 1
-    length = 1
-    for i in range(1, len(lst)):
-        diff = lst[i] - lst[i - 1]
-        if diff == 0:
-            length = 1
-        else:
-            if diff == lst[i - 1] - lst[i - 2]:
-                length += 1
-            else:
-                length = 2 if diff != lst[i - 1] - lst[i - 2] else 1
-        max_length = max(max_length, length)
+    run_lengths = []
+    for v, g in grouped_differences:
+        if v in [-1, 1]:
+            run_lengths.append(len(list(g)) + 1)
+    run_lengths.append(1)
 
-    return max_length
+    return max(run_lengths)
+
+# def longest_run(lst):
+#     if len(lst) < 2:
+#         return len(lst)
+#
+#     max_length = 1
+#     length = 1
+#     for i in range(1, len(lst)):
+#         diff = lst[i] - lst[i - 1]
+#         if diff == 0:
+#             length = 1
+#         else:
+#             if diff == lst[i - 1] - lst[i - 2]:
+#                 length += 1
+#             else:
+#                 length = 2 if diff != lst[i - 1] - lst[i - 2] else 1
+#         max_length = max(max_length, length)
+#
+#     return max_length
 
 # テスト
 print(longest_run([1, 2, 3, 5, 6, 7, 8, 9]))    # 5
@@ -166,13 +179,13 @@ print(longest_run([10, 9, 8, 7, 6, 2, 1]))      # 5
 	# # return total
 	# return len(max(total, key=len)) if total else 1
 
-print(longest_run([1, 2, 3, 5, 6, 7, 8, 9]))
-print(longest_run([1, 2, 3, 10, 11, 15]))
-print(longest_run([-7, -6, -5, -4, -3, -2, -1]))
-print(longest_run([3, 5, 6, 10, 15]))
-print(longest_run([3, 5, 7, 10, 15]))
-print(longest_run([5, 4, 3, 2, 1]))
-print(longest_run([5, 4, 2, 1]))
-print(longest_run([10, 9, 0, 5]))
-print(longest_run([1, 2, 3, 2, 1]))
-print(longest_run([10, 9, 8, 7, 6, 2, 1]))
+# print(longest_run([1, 2, 3, 5, 6, 7, 8, 9]))
+# print(longest_run([1, 2, 3, 10, 11, 15]))
+# print(longest_run([-7, -6, -5, -4, -3, -2, -1]))
+# print(longest_run([3, 5, 6, 10, 15]))
+# print(longest_run([3, 5, 7, 10, 15]))
+# print(longest_run([5, 4, 3, 2, 1]))
+# print(longest_run([5, 4, 2, 1]))
+# print(longest_run([10, 9, 0, 5]))
+# print(longest_run([1, 2, 3, 2, 1]))
+# print(longest_run([10, 9, 8, 7, 6, 2, 1]))

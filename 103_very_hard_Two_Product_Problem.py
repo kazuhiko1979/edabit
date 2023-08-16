@@ -14,27 +14,36 @@ No duplicates.
 In the list, there can be multiple solutions so return the solution with the lowest sum of indexes of product pairs (i.e. N = 10, solutions = [[2, 5], [10, 1]], indexes = [[600, 3000], [800, 900]], return [10, 1]).
 If any doubts please refer to the comments section.
 """
+from itertools import chain
+
 def two_product(lst, N):
 
-	temp = []
-	try:
-		for i in lst:
-			if N % i == 0:
-				temp.append(i)
-	except:
-		pass
+	divisors = [i for i in lst if i != 0 and N % i == 0]
 
-
-	def multiply_combinations(lst):
+	def multiply_combinations(lst, target):
 		result = []
 		for j in range(len(lst)):
 			for y in range(j + 1, len(lst)):
-				if N == lst[j] * lst[y]:
-					result.append(lst[j])
-					result.append(lst[y])
+				if target == lst[j] * lst[y]:
+					result.append([lst[j], lst[y]])
 		return result if result else None
 
-	return multiply_combinations(temp)
+	product_pairs = multiply_combinations(divisors, N)
+
+	# Return the solution with the lowest sum of indexes of product pairs
+	if product_pairs and len(product_pairs) > 1:
+		sum_index_list = [sum([lst.index(pair[0]), lst.index(pair[1])]) for pair in product_pairs]
+		min_index_pair = min(sum_index_list)
+		return product_pairs[sum_index_list.index(min_index_pair)]
+	elif product_pairs:
+		return list(chain.from_iterable(product_pairs))
+
+
+
+
+#
+	# else:
+	# 	return None
 
 print(two_product([1, 2, -1, 4, 5], 110))
 print(two_product([1, 2, -1, 4, 5], 20))

@@ -18,24 +18,43 @@ For this challenge, I will only be testing with magic squares made with whole nu
 """
 def is_magic(square):
 
-	if square == []:
+	n = len(square)
+
+	if n == 0:
 		return True
+
+	side_square = set(range(1, n * n + 1))
 	flatten = sorted([e for inner_list in square for e in inner_list])
-	len_square = [len(r) for r in square]
 
-	if len(set(len_square)) == 1:
-		side_square = [x for x in range(1, (set(len_square).pop())**2 + 1)]
-	else:
+	if set(flatten) != side_square:
 		return False
 
-	if flatten != side_square:
+	target_sum = sum(square[0])
+
+	for row in square:
+		if sum(row) != target_sum:
+			return False
+
+	for col in range(n):
+		if sum(row[col] for row in square) != target_sum:
+			return False
+
+
+	top_left = sum(square[i][i] for i in range(n))
+	top_right = sum(square[i][n - 1 - i] for i in range(n))
+
+	if top_left != target_sum or top_right != target_sum:
 		return False
-	else:
-		rows = set([sum(i) for i in square]).pop()
-		columns = set([sum(i) for i in list(zip(*square))]).pop()
-		top_left = sum([square[i][i] for i in range(len(square))])
-		top_right = sum([square[i][len(square) - 1 - i] for i in range(len(square))])
-		return len(set([rows, columns, top_left, top_right])) == 1
+
+	return True
+
+
+	# else:
+	# 	rows = set([sum(i) for i in square]).pop()
+	# 	columns = set([sum(i) for i in list(zip(*square))]).pop()
+	# 	top_left = sum([square[i][i] for i in range(len(square))])
+	# 	top_right = sum([square[i][len(square) - 1 - i] for i in range(len(square))])
+	# 	return len(set([rows, columns, top_left, top_right])) == 1
 
 
 print(is_magic([]))

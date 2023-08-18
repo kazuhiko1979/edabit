@@ -17,9 +17,7 @@ Notes
 For this challenge, I will only be testing with magic squares made with whole numbers ranging from 1 to n^2 where n in the length of a side of the square.
 """
 def is_magic(square):
-
 	n = len(square)
-
 	if n == 0:
 		return True
 
@@ -39,23 +37,12 @@ def is_magic(square):
 		if sum(row[col] for row in square) != target_sum:
 			return False
 
-
 	top_left = sum(square[i][i] for i in range(n))
 	top_right = sum(square[i][n - 1 - i] for i in range(n))
 
 	if top_left != target_sum or top_right != target_sum:
 		return False
-
 	return True
-
-
-	# else:
-	# 	rows = set([sum(i) for i in square]).pop()
-	# 	columns = set([sum(i) for i in list(zip(*square))]).pop()
-	# 	top_left = sum([square[i][i] for i in range(len(square))])
-	# 	top_right = sum([square[i][len(square) - 1 - i] for i in range(len(square))])
-	# 	return len(set([rows, columns, top_left, top_right])) == 1
-
 
 print(is_magic([]))
 print(is_magic([[1]]))

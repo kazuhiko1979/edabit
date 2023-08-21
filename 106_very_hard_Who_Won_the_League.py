@@ -77,24 +77,31 @@ table = [
 import numpy as np
 
 def EPLResult(table, team):
+	result = sorted(table, key=lambda x: ((x[2] * 3) + (x[3] * 1), x[5]), reverse=True)
+	for i, l in enumerate(result, 1):
+		if l[0] == team:
+			return '{} came {}{} with {} points and a goal difference of {}!'.format(team, i,
+				 "st" if i == 1 else "nd" if i == 2 else "rd" if i == 3 else "th",
+				 l[2] * 3 + l[3] * 1, l[-1])
 
-	# ポイント計算とゴール差を結合して新しいリストを作成
-	table = [[i[0], i[2] * 3 + i[3], i[5]] for i in table]
 
-	# ポイント数とゴール差で降順ソート
-	sorted_table = sorted(table, key=lambda x:(x[1], x[2]), reverse=True)
-
-	# チームの位置を検索
-	team_position = np.where(np.array(sorted_table)[:, 0] == team)[0][0] + 1
-
-	# 順位の表現を取得
-	def ordinal(n):
-		return "%d%s" % (n, "tsnrhtdd"[((n // 10) % 10 != 1) * (n % 10 < 4) * n % 10::4])
-
-	# チームの成績をフォーマットして返す
-	for position, data in enumerate(sorted_table, start=1):
-		if position == team_position:
-			return "{} came {} with {} points and a goal difference of {}!".format(data[0], ordinal(position), data[1], data[2])
+# # ポイント計算とゴール差を結合して新しいリストを作成
+	# table = [[i[0], i[2] * 3 + i[3], i[5]] for i in table]
+	#
+	# # ポイント数とゴール差で降順ソート
+	# sorted_table = sorted(table, key=lambda x:(x[1], x[2]), reverse=True)
+	#
+	# # チームの位置を検索
+	# team_position = np.where(np.array(sorted_table)[:, 0] == team)[0][0] + 1
+	#
+	# # 順位の表現を取得
+	# def ordinal(n):
+	# 	return "%d%s" % (n, "tsnrhtdd"[((n // 10) % 10 != 1) * (n % 10 < 4) * n % 10::4])
+	#
+	# # チームの成績をフォーマットして返す
+	# for position, data in enumerate(sorted_table, start=1):
+	# 	if position == team_position:
+	# 		return "{} came {} with {} points and a goal difference of {}!".format(data[0], ordinal(position), data[1], data[2])
 
 
 print(EPLResult(table, "Liverpool"))

@@ -27,10 +27,8 @@ Hint: You can define n_row from up_to using the triangular number sequence. That
 def floyd(up_to = None, n_row = None):
 
 	input_list = []
-	if up_to:
-		count = up_to
-	else:
-		count = n_row
+
+	count = up_to if up_to else n_row
 
 	while count > 0:
 		x = int(count * (count + 1) / 2)

@@ -38,19 +38,29 @@ secret_password("HeLen-eda") ➞ "BANG! BANG! BANG!"
 import string
 
 def secret_password(message):
-	alphabet = string.ascii_lowercase
-	divided_1, divided_2, divided_3 = message[0:3], message[3:6], message[6:]
 
-	try:
-		if message.isalpha() and not any(char.isupper() for char in message) and len(message) == 9:
-			divided_1 = str(alphabet.index(message[0]) + 1) + divided_1[1] + str(alphabet.index(message[2]) + 1)
-			divided_2 = divided_2[::-1]
-			divided_3 = ''.join(['a' if char == 'z' else chr((ord(char) - ord('a') + 1) % 26 + ord('a')) \
-				if 'a' <= char <= 'z' else char for char in divided_3])
-			return divided_2 + divided_3 + divided_1
+	alphabet = string.ascii_lowercase
+	if len(message) != 9 or any(char.isupper() for char in message) or not all(char.isalpha() for char in message):
 		return "BANG! BANG! BANG!"
-	except ValueError:
-		return "BANG! BANG! BANG!"
+
+	divided_1 = "{}{}{}".format(alphabet.index(message[0])+1, message[1], alphabet.index(message[2])+1)
+	divided_2 = message[3:6][::-1]
+	divided_3 = ''.join(['a' if char == 'z' else chr((ord(char) - ord('a') + 1) % 26 + ord('a')) \
+		if 'a' <= char <= 'z' else char for char in message[6:]])
+
+	return divided_2 + divided_3 + divided_1
+
+
+# try:
+	# 	if message.isalpha() and not any(char.isupper() for char in message) and len(message) == 9:
+	# 		divided_1 = str(alphabet.index(message[0]) + 1) + divided_1[1] + str(alphabet.index(message[2]) + 1)
+	# 		divided_2 = divided_2[::-1]
+	# 		divided_3 = ''.join(['a' if char == 'z' else chr((ord(char) - ord('a') + 1) % 26 + ord('a')) \
+	# 			if 'a' <= char <= 'z' else char for char in divided_3])
+	# 		return divided_2 + divided_3 + divided_1
+	# 	return "BANG! BANG! BANG!"
+	# except ValueError:
+	# 	return "BANG! BANG! BANG!"
 
 print(secret_password("mubashirh"))
 print(secret_password("mattedabi"))

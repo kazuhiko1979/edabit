@@ -17,21 +17,36 @@ sun_loungers("000") ➞ 2
 """
 
 def sun_loungers(beach):
+
 	count = 0
 
-	if beach[0] == '0' and beach[1] == '0':
+	if beach.startswith("00"):
 		beach = '1' + beach[1:]
 		count += 1
-	if beach[-1] == '0' and beach[-2] == '0':
-		beach = beach[:-1] + '1'
+	if beach.endswith("00"):
+		beach = beach[:-1] + "1"
 		count += 1
 
-	for i in range(0, len(beach)):
-		if beach[i] == '0':
-			if beach[i+1] == '0' and beach[i-1] == '0':
-				beach = beach[:i] + "1" + beach[i+1:]
-				count += 1
+	# if beach[0] == '0' and beach[1] == '0':
+	# 	beach = '1' + beach[1:]
+	# 	count += 1
+	# if beach[-1] == '0' and beach[-2] == '0':
+	# 	beach = beach[:-1] + '1'
+	# 	count += 1
+	i = 1
+	while i < len(beach) - 1:
+		if beach[i] == "0" and beach[i-1:i+2] == "000":
+			count += 1
+			beach = beach[:i] + "1" + beach[i + 1:]
+		i += 1
 	return count
+
+	# for i in range(0, len(beach)):
+	# 	if beach[i] == '0':
+	# 		if beach[i+1] == '0' and beach[i-1] == '0':
+	# 			beach = beach[:i] + "1" + beach[i+1:]
+	# 			count += 1
+	# return count
 
 
 print(sun_loungers("10001"))

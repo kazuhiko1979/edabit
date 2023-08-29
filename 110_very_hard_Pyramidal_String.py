@@ -54,51 +54,38 @@ def calculate_pyramid_levels(string_count):
 
     return level
 
+def is_valid_pyramid(levels, element_lengths):
+    return len(set(element_lengths)) == levels and 0 not in element_lengths
+
 def pyramidal_string(string, _type):
 	pyramid_level = calculate_pyramid_levels(len(string))
+
 	if not pyramid_level:
 		return []
 
 	if _type == "REG":
-		index = 2
-		end = 3
-		start = 1
-		result = []
-
-		result.append(string[0])
-		result.append(string[start:end])
-		while pyramid_level >= index:
-				index += 1
-				start = end
-				end = end + index
-				result.append(string[start:end])
-
-		original_element = len([len(i) for i in result[:-1]])
-		unique_element = len(set([len(i) for i in result[:-1]]))
-
-		if original_element == unique_element and result[:-1][-1] != '':
-			return result[:-1]
-		return "Error!"
-
-	if _type == "REV":
-		index = pyramid_level
 		start = 0
 		result = []
 
-		result.append(string[start:pyramid_level])
-		end = pyramid_level
+		for level in range(1, pyramid_level + 1):
+			end = start + level
+			result.append(string[start:end])
+			start = end
 
-		while index > 0:
-				index -= 1
-				start = end
-				end = start + index
-				result.append(string[start:end])
+		if is_valid_pyramid(pyramid_level, [len(s) for s in result]):
+			return result
+		return "Error!"
 
-		original_element = len([len(i) for i in result[:-1]])
-		unique_element = len(set([len(i) for i in result[:-1]]))
+	if _type == "REV":
+		start = 0
+		result = []
 
-		if original_element == unique_element and result[:-1][-1] != '':
-			return result[:-1]
+		for level in range(pyramid_level, 0, -1):
+			end = start + level
+			result.append(string[start:end])
+			start = end
+		if is_valid_pyramid(pyramid_level, [len(s) for s in result]):
+			return result
 		return "Error!"
 
 

@@ -44,6 +44,7 @@ Remember to insert a space between every character inside the rows containing tw
 The increment and the decrement of the rows in a pyramidal string are equal to one character more or less than the previous, depending on the given _type.
 You have to find a discriminant rule to establish if a string can be transformed into a pyramid, without creating single exceptions for every given case. What is suggesting to you the shape of a pyramid seen frontally?
 """
+
 def calculate_pyramid_levels(string_count):
     level = 0
     total_strings = 0
@@ -73,7 +74,7 @@ def pyramidal_string(string, _type):
 			start = end
 
 		if is_valid_pyramid(pyramid_level, [len(s) for s in result]):
-			return result
+			return [' '.join(word) for word in result]
 		return "Error!"
 
 	if _type == "REV":
@@ -85,9 +86,8 @@ def pyramidal_string(string, _type):
 			result.append(string[start:end])
 			start = end
 		if is_valid_pyramid(pyramid_level, [len(s) for s in result]):
-			return result
+			return [' '.join(word) for word in result]
 		return "Error!"
-
 
 print(pyramidal_string("", "REG"))
 print(pyramidal_string("ZAPHODBEEBLEBROX", "REG"))

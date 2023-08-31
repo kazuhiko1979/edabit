@@ -29,50 +29,61 @@ Notes
 See this resource to find out how this process can be utilized for numbers of any length!
 This challenge was heavily inspired by Mubashir Hassan's challenge on adding two numbers together!
 """
-
 def multiply_by_11(n):
 
-	temp = [int(i[0]) + int(i[1]) for i in zip(n, n[1:])]
-	temp.insert(0, int(list(n)[0]))
-	temp.append(int(list(n)[-1]))
+	n, res, c = '0{}0'.format(n[::-1]), [], 0
 
-	result = []
-	flag = False
-	nine = False
+	for a, b in zip(n, n[1:]):
+		total = int(a) + int(b) + c
+		res.append(total % 10)
+		c = total // 10
+	if c: res.append(c)
+	return ''.join(map(str, reversed(res)))
 
-	for x in temp[::-1]:
-		if len(str(x)) == 1 :
-			if x == 9:
-				if flag:
-					x = 10
-					result.append(int(str(x)[-1]))
-					flag = True
-					nine = True
-				else:
-					result.append(x)
-					flag = False
-			else:
-				if not nine and not flag:
-					result.append(x)
-				if flag:
-					result.append(x+1)
-					nine = False
-					flag = False
 
-		elif len(str(x)) > 1:
-			if flag:
-				num = int(str(x)) + 1
-				result.append(int(str(num)[-1]))
-			elif not flag:
-				num = int(str(x))
-				result.append(int(str(num)[-1]))
-				flag = True
-
-	number = [str(value) for value in reversed(result)]
-
-	if number[0] == '0':
-		number.insert(0, '1')
-	return ''.join(number)
+# def multiply_by_11(n):
+#
+# 	temp = [int(i[0]) + int(i[1]) for i in zip(n, n[1:])]
+# 	temp.insert(0, int(list(n)[0]))
+# 	temp.append(int(list(n)[-1]))
+#
+# 	result = []
+# 	flag = False
+# 	nine = False
+#
+# 	for x in temp[::-1]:
+# 		if len(str(x)) == 1 :
+# 			if x == 9:
+# 				if flag:
+# 					x = 10
+# 					result.append(int(str(x)[-1]))
+# 					flag = True
+# 					nine = True
+# 				else:
+# 					result.append(x)
+# 					flag = False
+# 			else:
+# 				if not nine and not flag:
+# 					result.append(x)
+# 				if flag:
+# 					result.append(x+1)
+# 					nine = False
+# 					flag = False
+#
+# 		elif len(str(x)) > 1:
+# 			if flag:
+# 				num = int(str(x)) + 1
+# 				result.append(int(str(num)[-1]))
+# 			elif not flag:
+# 				num = int(str(x))
+# 				result.append(int(str(num)[-1]))
+# 				flag = True
+#
+# 	number = [str(value) for value in reversed(result)]
+#
+# 	if number[0] == '0':
+# 		number.insert(0, '1')
+# 	return ''.join(number)
 
 print(multiply_by_11('113434'))
 print(multiply_by_11('111111111'))

@@ -25,7 +25,10 @@ The position indexes have to be in the order they appear in the string sequence.
 The string at the end of the list has to be present only if n is an Early Bird.
 Check the Resources tab for more info on this sequence.
 """
-
+def is_early_bird(r, n):
+	r, l = ''.join(str(i) for i in range(r+2)), len(str(n))
+	f = [list(range(i, i+l)) for i, j in enumerate(r[:-l]) if r[i:i+l] == str(n)]
+	return f + ["Early Bird!"] if len(f) > 1 else f
 
 # def is_early_bird(_range, n):
 # 	num_string_sequence = ''.join(map(str, range(_range + 1)))
@@ -33,58 +36,17 @@ Check the Resources tab for more info on this sequence.
 # 	positions = []
 #
 # 	for i in range(len(num_str), len(num_string_sequence)):
-# 		if num_string_sequence[i - len(num_str):i] == num_str:
+# 		num = num_string_sequence[i - len(num_str):i]
+# 		if num == num_str:
 # 			positions.append(list(range(i - len(num_str), i)))
 #
 # 	if len(positions) > 1:
 # 		positions.append("Early Bird!")
 #
 # 	return positions
-#
-#
-# # テストケース
-# print(is_early_bird(20, 14))
-# print(is_early_bird(20, 12))
-# print(is_early_bird(101, 101))
-# print(is_early_bird(50, 34))
-# print(is_early_bird(212, 156))
-# print(is_early_bird(400, 240))
-# print(is_early_bird(900, 888))
-# print(is_early_bird(1200, 745))
-# print(is_early_bird(2000, 666))
-
-import re
-
-def is_early_bird(_range, n):
-
-	num_string_sequence= ''.join([str(i) for i in range(0, _range + 1)])
-	matches = re.finditer(str(n), num_string_sequence)
-
-	match_positions = []
-
-	for match in matches:
-		match_positions.append([match.start(), match.end()])
-
-	result = []
-	temp = []
-	count = 0
-	length = len(str(n))
-
-	for index in match_positions:
-		for i, v in enumerate(range(index[0], index[1])):
-			temp.append(v)
-			count += 1
-			if length == count:
-				result.append(temp)
-				temp = []
-				count = 0
-
-	if len(result) > 1:
-		result.append("Early Bird!")
-
-	return result
 
 
+# テストケース
 print(is_early_bird(20, 14))
 print(is_early_bird(20, 12))
 print(is_early_bird(101, 101))
@@ -94,6 +56,48 @@ print(is_early_bird(400, 240))
 print(is_early_bird(900, 888))
 print(is_early_bird(1200, 745))
 print(is_early_bird(2000, 666))
+
+# import re
+#
+# def is_early_bird(_range, n):
+#
+# 	num_string_sequence= ''.join([str(i) for i in range(0, _range + 1)])
+# 	matches = re.finditer(str(n), num_string_sequence)
+#
+# 	match_positions = []
+#
+# 	for match in matches:
+# 		match_positions.append([match.start(), match.end()])
+#
+# 	result = []
+# 	temp = []
+# 	count = 0
+# 	length = len(str(n))
+#
+# 	for index in match_positions:
+# 		for i, v in enumerate(range(index[0], index[1])):
+# 			temp.append(v)
+# 			count += 1
+# 			if length == count:
+# 				result.append(temp)
+# 				temp = []
+# 				count = 0
+#
+# 	if len(result) > 1:
+# 		result.append("Early Bird!")
+#
+# 	return result
+
+
+# print(is_early_bird(20, 14))
+# print(is_early_bird(20, 12))
+# print(is_early_bird(101, 101))
+# print(is_early_bird(50, 34))
+# print(is_early_bird(212, 156))
+# print(is_early_bird(400, 240))
+# print(is_early_bird(900, 888))
+# print(is_early_bird(1200, 745))
+# print(is_early_bird(2000, 666))
 
 
 

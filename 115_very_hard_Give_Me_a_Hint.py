@@ -20,49 +20,46 @@ grant_the_hint("The Life of Pi") ➞ [
   "The Life of Pi"
 ]
 """
-
-
-
-
-
-
-
-
-
 def grant_the_hint(txt):
+  words = txt.split()
+  m = max(len(w) for w in words) + 1
+  return [' '.join(w[:i] + '_'*(len(w)-i) for w in words) for i in range(m)]
 
-	temp = txt.split()
-	start = 1
-	end = 1
-	sub = []
-	result = []
-	top = ' '.join(['_' * len(word) for word in txt.split()])
-	result.append(top)
-	buttom = ''
 
-	while buttom != txt:
-		for word in txt.split():
-			if len(word) - end:
-				word = word[:start] + '_' * (len(word) - end)
-				sub.append(word)
-				if len(sub) == len(temp):
-					result.append(' '.join(sub))
-					sub = []
-					start += 1
-					end += 1
-					buttom = result[-1]
-					break
-			else:
-
-				sub.append(word)
-				if len(sub) == len(temp):
-					result.append(' '.join(sub))
-					sub = []
-					start += 1
-					end += 1
-					buttom = result[-1]
-					break
-	return result
+# def grant_the_hint(txt):
+#
+# 	temp = txt.split()
+# 	start = 1
+# 	end = 1
+# 	sub = []
+# 	result = []
+# 	top = ' '.join(['_' * len(word) for word in txt.split()])
+# 	result.append(top)
+# 	buttom = ''
+#
+# 	while buttom != txt:
+# 		for word in txt.split():
+# 			if len(word) - end:
+# 				word = word[:start] + '_' * (len(word) - end)
+# 				sub.append(word)
+# 				if len(sub) == len(temp):
+# 					result.append(' '.join(sub))
+# 					sub = []
+# 					start += 1
+# 					end += 1
+# 					buttom = result[-1]
+# 					break
+# 			else:
+#
+# 				sub.append(word)
+# 				if len(sub) == len(temp):
+# 					result.append(' '.join(sub))
+# 					sub = []
+# 					start += 1
+# 					end += 1
+# 					buttom = result[-1]
+# 					break
+# 	return result
 
 print(grant_the_hint('The River Nile'))
 print(grant_the_hint("Mary Queen of Scots"))

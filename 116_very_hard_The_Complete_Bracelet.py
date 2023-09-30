@@ -28,28 +28,38 @@ complete_bracelet([5, 5, 5]) ➞ False
 Notes
 Patterns must be at least two integers in length.
 """
-import numpy as np
+def complete_bracelet(lst):
 
-def complete_bracelet(array):
+  a = []
+  for x, i in enumerate(lst[:-1]):
+    a.append(i)
+    b = len(lst) // len(a)
+    if b * a == lst and len(a) >= 2:
+      return True
+  return False
 
-	original_array = np.array(array)
-	num_slice = 2
-	if len(original_array) < 4:
-		return False
-
-	while num_slice <= len(original_array):
-		try:
-			split_arrays = np.split(original_array, num_slice)
-			result = all(np.array_equal(split_arrays[0], arr) for arr in split_arrays)
-			if result:
-				break
-			elif not result and len(split_arrays[0]) == 2:
-				return False
-			else:
-				num_slice += 1
-		except:
-			return False
-	return result
+# import numpy as np
+#
+# def complete_bracelet(array):
+#
+# 	original_array = np.array(array)
+# 	num_slice = 2
+# 	if len(original_array) < 4:
+# 		return False
+#
+# 	while num_slice <= len(original_array):
+# 		try:
+# 			split_arrays = np.split(original_array, num_slice)
+# 			result = all(np.array_equal(split_arrays[0], arr) for arr in split_arrays)
+# 			if result:
+# 				break
+# 			elif not result and len(split_arrays[0]) == 2:
+# 				return False
+# 			else:
+# 				num_slice += 1
+# 		except:
+# 			return False
+# 	return result
 
 
 print(complete_bracelet([1, 2, 2, 1, 2, 2]))

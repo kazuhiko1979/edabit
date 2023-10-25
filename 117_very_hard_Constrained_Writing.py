@@ -29,44 +29,56 @@ Remember to respect the given order to establish the result: a Pangram has to be
 Sentences will contain letters (either uppercase or lowercase) and punctuation. Your function must be case-insensitive.
 """
 
-alphabet_set = set("abcdefghijklmnopqrstuvwxyz")
 def constraint(txt):
-
-	result = txt.replace(' ', '')
-	result = result.replace('.', '')
-
-	common_characters = alphabet_set.intersection(result.lower())
-
-	character_set = set()
-	def heterogram(result):
-		for char in result:
-			if char in character_set:
-				return False
-			character_set.add(char)
-		return True
-
-	def tautogram(txt):
-		starts_with_t = set([word[0].lower() for word in txt.split(' ')])
-		return len(starts_with_t) == 1
-
-	def transgram(txt):
-		words = txt.split()
-		common_characters = set(words[0].lower())
-		for word in words[1:]:
-			common_characters = common_characters.intersection(set(word.lower()))
-		return common_characters
-
-
-	if len(common_characters) == 26:
-		return "Pangram"
-	elif heterogram(result):
-		return "Heterogram"
-	elif tautogram(txt):
-		return "Tautogram"
-	elif transgram(txt):
-		return "Transgram"
+	if all(i in txt.lower() for i in 'abcdefghijklmnopqrstuvwxyz'):
+		return 'Pangram'
+	elif all(txt.lower().count(ch)==1 for ch in txt.lower() if ch != ' '):
+		return 'Heterogram'
+	elif len(set(i[0] for i in txt.lower().split())) == 1:
+		return 'Tautogram'
+	elif set.intersection(*map(set, txt.lower().split())):
+		return 'Transgram'
 	else:
-		return "Sentence"
+		return 'Sentence'
+
+# alphabet_set = set("abcdefghijklmnopqrstuvwxyz")
+# def constraint(txt):
+#
+# 	result = txt.replace(' ', '')
+# 	result = result.replace('.', '')
+#
+# 	common_characters = alphabet_set.intersection(result.lower())
+#
+# 	character_set = set()
+# 	def heterogram(result):
+# 		for char in result:
+# 			if char in character_set:
+# 				return False
+# 			character_set.add(char)
+# 		return True
+#
+# 	def tautogram(txt):
+# 		starts_with_t = set([word[0].lower() for word in txt.split(' ')])
+# 		return len(starts_with_t) == 1
+#
+# 	def transgram(txt):
+# 		words = txt.split()
+# 		common_characters = set(words[0].lower())
+# 		for word in words[1:]:
+# 			common_characters = common_characters.intersection(set(word.lower()))
+# 		return common_characters
+#
+#
+# 	if len(common_characters) == 26:
+# 		return "Pangram"
+# 	elif heterogram(result):
+# 		return "Heterogram"
+# 	elif tautogram(txt):
+# 		return "Tautogram"
+# 	elif transgram(txt):
+# 		return "Transgram"
+# 	else:
+# 		return "Sentence"
 
 print(constraint("The quick brown fox jumps over the lazy dog."))
 print(constraint("The big dwarf only jumps."))

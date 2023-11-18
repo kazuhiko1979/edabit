@@ -29,7 +29,6 @@ def min_palindrome_steps(txt):
 		if result == result[::-1]:
 			return count
 		else:
-
 			temp = temp[::-1]
 
 

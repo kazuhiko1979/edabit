@@ -1,22 +1,29 @@
 function minPalindromeSteps(txt){
-  let count = 0;
-  let temp = "";
 
-  if (txt === txt.split("").reverse().join("")){
-    return count;
-  }
-
-  for (let i of txt){
-    temp += i;
-    temp = temp.split("").reverse().join("");
-    let reuslt = txt + temp;
-    count++;
-    if (reuslt == reuslt.split("").reverse().join("")){
-      return count;
-    } else {
-      temp = temp.split("").reverse().join("");
+  for (let i = 0; i < txt.length; i++) {
+    if (txt.slice(i) === txt.slice(i).split("").reverse().join("")) {
+      return i;
     }
   }
+
+  // let count = 0;
+  // let temp = "";
+
+  // if (txt === txt.split("").reverse().join("")){
+  //   return count;
+  // }
+
+  // for (let i of txt){
+  //   temp += i;
+  //   temp = temp.split("").reverse().join("");
+  //   let reuslt = txt + temp;
+  //   count++;
+  //   if (reuslt == reuslt.split("").reverse().join("")){
+  //     return count;
+  //   } else {
+  //     temp = temp.split("").reverse().join("");
+  //   }
+  // }
 }
 
 console.log(minPalindromeSteps("race")); 

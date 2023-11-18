@@ -1,29 +1,39 @@
 public class minPalindromeStep {
 
   public static int minPalindromeSteps(String txt) {
-
-    int count = 0;
-    String temp = "";
-
-    if (txt.equals(new StringBuilder(txt).reverse().toString())) {
-      return count;
-    }
-
-    for (char i : txt.toCharArray()) {
-      temp += i;
-      temp = new StringBuilder(temp).reverse().toString();
-      String result = txt + temp;
-      count++;
-      if (result.equals(new StringBuilder(result).reverse().toString())) {
-        return count;
-      } else {
-        temp = new StringBuilder(temp).reverse().toString();
+    for (int i = 0; i < txt.length(); i++) {
+      if (txt.substring(i).equals(
+          new StringBuffer(txt.substring(i)).reverse().toString())) {
+        return i;
       }
     }
-
-    return count;
-
+    return 0;
   }
+
+  // public static int minPalindromeSteps(String txt) {
+
+  // int count = 0;
+  // String temp = "";
+
+  // if (txt.equals(new StringBuilder(txt).reverse().toString())) {
+  // return count;
+  // }
+
+  // for (char i : txt.toCharArray()) {
+  // temp += i;
+  // temp = new StringBuilder(temp).reverse().toString();
+  // String result = txt + temp;
+  // count++;
+  // if (result.equals(new StringBuilder(result).reverse().toString())) {
+  // return count;
+  // } else {
+  // temp = new StringBuilder(temp).reverse().toString();
+  // }
+  // }
+
+  // return count;
+
+  // }
 
   public static void main(String[] args) {
 

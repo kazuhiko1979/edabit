@@ -79,7 +79,6 @@ Notes
 There will be a one character space with no rung at the top and bottom of every ladder.
 The height of the ladder is not needed for solving this problem.
 """
-import re
 
 def is_ladder_safe(ldr):
 

@@ -18,20 +18,25 @@ robot_path(["n", "s", "n", "n", "e", "n", "w", "w", "s", "w", "w", "w", "n"]) âž
 
 def robot_path(commands):
 
-    movements = {'n': (0, 1), 'e': (1, 0), 's': (0, -1), 'w': (-1, 0)}
-    position = [0, 0]
+    dest = [(3, 2), (-4, 3)]
+    x = commands.count('e') - commands.count('w')
+    y = commands.count('n') - commands.count('s')
+    return (x, y) in dest
 
-    destinations = [
-        [3, 2],
-        [-4, 3]
-    ]
-
-    for move in commands:
-        x, y = movements[move]
-        position[0] += x
-        position[1] += y
-
-    return any(position == dest for dest in destinations)
+    # movements = {'n': (0, 1), 'e': (1, 0), 's': (0, -1), 'w': (-1, 0)}
+    # position = [0, 0]
+    #
+    # destinations = [
+    #     [3, 2],
+    #     [-4, 3]
+    # ]
+    #
+    # for move in commands:
+    #     x, y = movements[move]
+    #     position[0] += x
+    #     position[1] += y
+    #
+    # return any(position == dest for dest in destinations)
 
     # upAndDown = 0
     # leftRight = 0

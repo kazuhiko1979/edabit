@@ -1,24 +1,23 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class very_hard_Same_Letter_Patterns_123 {
+
   public static boolean sameLetterPattern(String txt1, String txt2) {
-    return generatePattern(txt1).equals(generatePattern(txt2));
+    return allPos(txt1).equals(allPos(txt2));
   }
 
-  private static String generatePattern(String txt) {
-    Map<Character, Integer> temp = new HashMap<>();
-    StringBuilder pattern = new StringBuilder();
-    int currentPattern = 1;
+  private static List<Integer> allPos(String x) {
+    List<Integer> positions = new ArrayList<>();
 
-    for (char c : txt.toCharArray()) {
-      if (!temp.containsKey(c)) {
-        temp.put(c, currentPattern);
-        currentPattern++;
+    for (int i = 0; i < x.length(); i++) {
+      for (int j = 0; j < x.length(); j++) {
+        if (x.charAt(i) == x.charAt(j)) {
+          positions.add(j);
+        }
       }
-      pattern.append(temp.get(c));
     }
-    return pattern.toString();
+    return positions;
   }
 
   public static void main(String[] args) {

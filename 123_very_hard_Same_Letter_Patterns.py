@@ -12,6 +12,13 @@ same_letter_pattern("FFGG", "CDCD") ➞ False
 same_letter_pattern("FFFF", "ABCD") ➞ False
 """
 
+def same_letter_pattern(txt1, txt2):
+	return all_pos(txt1) == all_pos(txt2)
+
+def all_pos(x):
+
+	return [j for i in x for j in range(len(x)) if i == x[j]]
+
 
 
 
@@ -42,22 +49,22 @@ same_letter_pattern("FFFF", "ABCD") ➞ False
 # 		result = ""
 # 	return len(set(total)) == 1
 
-def same_letter_pattern(txt1, txt2):
-
-	def generate_pattern(txt):
-		temp = {}
-		pattern = ""
-		current_pattern = 1
-
-		for char in txt:
-			if char not in temp:
-				temp[char] = current_pattern
-				current_pattern += 1
-			pattern += str(temp[char])
-
-		return pattern
-
-	return generate_pattern(txt1) == generate_pattern(txt2)
+# def same_letter_pattern(txt1, txt2):
+#
+# 	def generate_pattern(txt):
+# 		temp = {}
+# 		pattern = ""
+# 		current_pattern = 1
+#
+# 		for char in txt:
+# 			if char not in temp:
+# 				temp[char] = current_pattern
+# 				current_pattern += 1
+# 			pattern += str(temp[char])
+#
+# 		return pattern
+#
+# 	return generate_pattern(txt1) == generate_pattern(txt2)
 
 
 print(same_letter_pattern('ABAB', 'CDCD'))
